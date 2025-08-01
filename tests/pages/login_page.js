@@ -1,15 +1,12 @@
+import {expect} from '@playwright/test';
 export default class BasePage {
 
-    // initializing page 
     constructor(page) {
         this.page = page;
     }
 
-    // NavigateToBrowser Method
     async NavigateToBrowser(url) {
-        // navigating to the browser
         await this.page.goto(url);
-        // pauses execution to load the entire assets 
         await this.page.waitForTimeout(5000);
     }
     async Fill_Login_Details(username, password) {
@@ -21,6 +18,6 @@ export default class BasePage {
     async Products_Page_Validation()
     {
         const url=await this.page.url()
-        console.log(url)
+        await expect(url).toBe('https://www.saucedemo.com/inventory.html')
     }
 }
